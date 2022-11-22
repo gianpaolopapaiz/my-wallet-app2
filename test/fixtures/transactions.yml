@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  value: 1.5
+  category: one
+  account: one
+  subcategory: one
+  check_number: MyString
+  date: 2022-11-21
+
+two:
+  name: MyString
+  description: MyText
+  value: 1.5
+  category: two
+  account: two
+  subcategory: two
+  check_number: MyString
+  date: 2022-11-21
