@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :subcategories, only: %i[index new create]
   end
 
+  resources :statistics, only: [:index]
   resources :transactions, only: %i[show edit update destroy]
   resources :subcategories, only: %i[edit update destroy]
 end
