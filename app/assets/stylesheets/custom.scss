@@ -3,7 +3,6 @@
 body {
   font-family: "Work Sans", "Helvetica", "sans-serif";
   min-height: 100vh;
-  background-color: beige;
 }
 
 h1, h2, h3, h4, h5, h6, th {
@@ -24,15 +23,6 @@ select, input, .btn, .accordion-header {
 
 .main-box-shadow {
   box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
-}
-
-.btn-primary {
-  background-color: green;
-  border-color: green;
-  &:hover {
-    background-color: darkgreen;
-    border-color: green;
-  }
 }
 
 .btn-outline-primary {
