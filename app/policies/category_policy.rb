@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 
-class AccountPolicy < ApplicationPolicy
+class CategoryPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.where(user:)
     end
-  end
-
-  def show?
-    record.user == user
   end
 
   def new?
@@ -27,11 +23,8 @@ class AccountPolicy < ApplicationPolicy
     record.user == user
   end
 
-  def ofx_import?
-    record.user == user
-  end
-
-  def ofx_import_to_account?
+  # Subcategory's index
+  def index?
     record.user == user
   end
 end
