@@ -1,0 +1,13 @@
+.wallet-accordion-item {
+  border-radius: 10px;
+  border: 2px solid green;
+  a {
+    text-decoration: none;
+  }
+  .wallet-accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    color: green;}
+}

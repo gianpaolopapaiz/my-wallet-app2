@@ -1,0 +1,34 @@
+.wallet-card {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-height: 130px ;
+  column-gap: 10px;
+  .card-info {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    h6 {
+      font-weight: bold;
+      color: green;
+    }
+    .description {
+      font-size: small;
+    }
+    span {
+      font-size: medium;
+    }
+  }
+  .card-value {
+    flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    .value {
+      font-size: large;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.bi {
+  text-decoration: none;
+}
+
+.bi-pencil-fill {
+  color: green;
+
+  &:hover {
+    color: darkgreen;
+  }
+}
+
+.bi-trash-fill {
+  color: red;
+
+  &:hover {
+    color: darkred;
+  }
+}

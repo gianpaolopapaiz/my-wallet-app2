@@ -1,0 +1,114 @@
+@import '/components/index';
+
+body {
+  font-family: "Work Sans", "Helvetica", "sans-serif";
+  min-height: 100vh;
+  background-color: beige;
+}
+
+h1, h2, h3, h4, h5, h6, th {
+  font-family: "Nunito", "Helvetica", "sans-serif";
+}
+
+select, input, .btn, .accordion-header {
+  border-radius: 10px !important;
+}
+
+.default-page-wrapper {
+  padding: 15px;
+}
+
+.default-border-radius {
+  border-radius: 10px;
+}
+
+.main-box-shadow {
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+}
+
+.btn-primary {
+  background-color: green;
+  border-color: green;
+  &:hover {
+    background-color: darkgreen;
+    border-color: green;
+  }
+}
+
+.btn-outline-primary {
+  border-color: green;
+  color: green;
+  &:hover {
+    color: white;
+    background-color: green;
+    border-color: green;
+  }
+}
+
+.add-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  row-gap: 10px;
+  flex-wrap: wrap;
+}
+@media (max-width: 400px) {
+  .add-button {
+    flex-direction: column;
+    .dropdown, {
+      width: 100%;
+    }
+    button, .btn {
+      width: 100%;
+    }
+  }
+}
+
+.action-column {
+  display: flex;
+  column-gap: 20px;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.positive-number {
+  color: green;
+}
+
+.negative-number {
+  color: red;
+}
+
+.form-date {
+  background-color: #F4F4F4;
+  border: 1px solid #ced4da;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba(0, 128, 0, 0.25);
+    outline: 0;
+    border-color: #80c080
+  }
+}
+
+.text-right {
+  text-align: right;
+}
+
+@media (max-width: 1000px) {
+  .wallet-lg {
+    display: none;
+  }
+  .wallet-sm {
+    display: none;
+  }
+}
+
+@media (min-width: 1001px) {
+  .wallet-md {
+    display: none;
+  }
+  .wallet-sm {
+    display: none;
+  }
+}
