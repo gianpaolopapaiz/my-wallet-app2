@@ -1,0 +1,10 @@
+- if notice
+  %div.alert.alert-success.wallet-alert{role: "alert"}
+    = notice
+    %a.close{"aria-label": "Close", "data-bs-dismiss": "alert", type: "button"}
+      %span{"aria-hidden": "true"} ×
+- if alert
+  %div.alert.alert-warning.wallet-alert{role: "alert"}
+    = alert
+    %a.close{"aria-label": "Close", "data-bs-dismiss": "alert", type: "button"}
+      %span{"aria-hidden": "true"} ×

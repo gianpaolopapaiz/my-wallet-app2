@@ -1,0 +1,24 @@
+%div.bg-white.main-box-shadow.default-border-radius.p-3.my-3.wallet-card.default-border-radius.p-3
+  %div.card-info
+    %h6= account.name
+    %div
+      = account.description
+    %div
+      Initial Amount:
+      = number_to_currency(account.initial_amount)
+    %div
+      Balance:
+      %span{class: "#{number_class(account.balance)}"}
+        = number_to_currency(account.balance)
+  %div.card-value
+    %div{style: 'min-width:60px'}
+      = link_to '', edit_account_path(account), 'data-controller': 'turbo',
+                                                class: 'bi bi-pencil-fill mx-2',
+                                                title: 'Edit account'
+      = link_to '', account_path(account), data: { turbo_method: :delete,
+                                                   turbo_confirm: 'Are you sure that you want to delete this account?' },
+                                                   class: 'bi bi-trash-fill',
+                                                   title: 'Delete account'
+    %div
+      =link_to '', account_path(account), title: 'Account transactions',
+                                          class: 'bi bi-file-text-fill mx-2'

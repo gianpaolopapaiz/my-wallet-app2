@@ -1,0 +1,7 @@
+%h4 OFX Importer
+= simple_form_for @account, data: { turbo: false }, url: account_ofx_import_path(@account), method: :post do |f|
+  %p Choose an OFX file to import transactions from:
+  = f.input :ofx_file, as: :file, label: false, input_html: { accept:".ofx" }
+  .form-buttons
+    = link_to 'Cancel', account_path(@account), class: 'btn btn-outline-primary'
+    = f.submit 'Import', class: 'btn btn-primary'

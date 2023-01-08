@@ -1,0 +1,35 @@
+.add-button
+  %h3 Categories
+  = link_to 'Add category', new_category_path, 'data-controller': 'turbo',
+                                               class: 'btn btn-primary btn-sm'
+
+-if @categories.present?
+  .bg-white.main-box-shadow.default-border-radius.p-3
+    %table.table{'data-controller': 'accordion-icon'}
+      %thead
+        %tr
+          %th{ scope: 'col', style: 'width: 30px' }
+          %th{ scope: 'col' }Category
+          %th{ scope: 'col' }Description
+          %th.text-right{ scope: 'col' }Action
+      %tbody
+        #accordionCategory.accordion
+        - @categories.each do |category|
+          = render 'category_row', category: category
+          - if category.subcategories.exists?
+            %tr
+              %td.accordion-body.collapse.px-4{id: "collapse#{category.id}",
+                                               "aria-labelledby": "heading#{category.id}",
+                                               "data-bs-parent": "#accordionCategory",
+                                               colspan: "4"}
+                %table.table
+                  %thead
+                    %th Subcategory
+                    %th Description
+                    %th Action
+                  %tbody
+                    - category.subcategories.each do |subcategory|
+                      = render 'subcategories/subcategory_row', subcategory: subcategory
+
+- else
+  %p (There are no categories yet.)

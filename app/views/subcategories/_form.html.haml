@@ -1,0 +1,7 @@
+%h4="Subcategory for #{subcategory_name}"
+= simple_form_for simple_form_path do |f|
+  = f.input :name
+  = f.input :description
+  .form-buttons
+    = link_to 'Cancel', categories_path, class: 'btn btn-outline-primary'
+    = f.submit submit_text, class: 'btn btn-primary'

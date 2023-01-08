@@ -1,0 +1,5 @@
+= turbo_stream.replace 'remote_modal' do
+  = render partial: 'transactions/form', layout: 'layouts/main_modal',
+                                         locals: { title: "Edit Transaction",
+                                                   simple_form_path: [@transaction],
+                                                   submit_text: 'Update' }

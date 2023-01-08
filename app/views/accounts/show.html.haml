@@ -1,0 +1,82 @@
+.add-button
+  %h3
+    = link_to 'Accounts', accounts_path(@account), class: 'text-decoration-none',
+                                                   title: 'Accounts overview',
+                                                   style: 'color: green'
+    %span= "/ #{@account.name}"
+  - unless @account.transactions.present?
+    .dropdown
+      %button#dropdownMenuButton1.btn.btn-primary.btn-sm.dropdown-toggle{"aria-expanded": "false",
+                                                                         "data-bs-toggle": "dropdown",
+                                                                         type: "button"}
+        Add Transaction
+      %ul.dropdown-menu{"aria-labelledby":  "dropdownMenuButton1"}
+        %li
+          = link_to 'Manual Transaction', new_account_transaction_path(@account), 'data-controller': 'turbo',
+                                                                                  class: 'dropdown-item'
+        %li
+          = link_to 'Import From OFX', account_ofx_import_path(@account), 'data-controller': 'turbo',
+                                                                          class: 'dropdown-item'
+
+-if @account.transactions.present?
+  %br
+  .bg-white.main-box-shadow.default-border-radius.p-3
+    .add-button
+      %h4= "Transactions (#{@transactions_count})"
+      .dropdown
+        %button#dropdownMenuButton1.btn.btn-primary.btn-sm.dropdown-toggle{"aria-expanded": "false",
+                                                                           "data-bs-toggle": "dropdown",
+                                                                           type: "button"}
+          Add Transaction
+        %ul.dropdown-menu{"aria-labelledby":  "dropdownMenuButton1"}
+          %li
+            = link_to 'Manual Transaction', new_account_transaction_path(@account), 'data-controller': 'turbo',
+                                                                                    class: 'dropdown-item'
+          %li
+            = link_to 'Import From OFX', account_ofx_import_path(@account), 'data-controller': 'turbo',
+                                                                            class: 'dropdown-item'
+
+    %hr
+    = render 'shared/accordion_filter', form_tag_path: account_path(@account),
+                                        header_title: 'Filters',
+                                        filter_date_range: true,
+                                        filter_account: false,
+                                        filter_payment_type: true,
+                                        filter_category: true
+    %hr.wallet-lg
+
+    %table.table.table-hover.wallet-lg
+      %thead
+        %tr
+          %th{ scope: 'col' }Date
+          %th{ scope: 'col' }Name
+          %th{ scope: 'col' }Description
+          %th{ scope: 'col' }Category
+          %th{ scope: 'col' }Subcategory
+          %th{ scope: 'col' }Information
+          %th.text-right{ scope: 'col' }Amount
+          %th.text-right{ scope: 'col' }Balance
+          %th.text-right{ scope: 'col' }Action
+      %tbody
+        - if @transactions.present?
+          - @transactions.each do |transaction|
+            = render 'transactions/transaction_row', transaction: transaction
+        - else
+          %tr
+            %td.text-center{colspan: 9} (There are no transactions for this selection.)
+
+  %div.wallet-md
+    - if @transactions.present?
+      - date = ''
+      - previous_date = ''
+      - @transactions.each do |transaction|
+        - date = transaction.date
+        - if date != previous_date
+          %div.d-flex.justify-content-between.align-items-center.mt-4.px-2
+            %h6= long_date(date)
+            = number_to_currency(transaction.account.balance_by_date(date))
+        = render 'transactions/transaction_card', transaction: transaction
+        - previous_date = date
+
+- else
+  %p (There are no transactions yet.)

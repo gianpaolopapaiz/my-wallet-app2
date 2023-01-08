@@ -1,0 +1,5 @@
+= turbo_stream.replace 'remote_modal' do
+  = render partial: 'transactions/form', layout: 'layouts/main_modal',
+                                         locals: { title: "New Transaction",
+                                                   simple_form_path: [@account, @transaction],
+                                                   submit_text: 'Crate' }

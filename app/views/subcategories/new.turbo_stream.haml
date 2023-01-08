@@ -1,0 +1,6 @@
+= turbo_stream.replace 'remote_modal' do
+  = render partial: 'subcategories/form', layout: 'layouts/main_modal',
+                                         locals: { title: "Create Subcategory",
+                                                   simple_form_path: [@category, @subcategory],
+                                                   submit_text: 'Create',
+                                                   subcategory_name: @subcategory.name }

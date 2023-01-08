@@ -1,0 +1,30 @@
+.add-button
+  %h3 Accounts Overview
+  = link_to 'Add Account', new_account_path, 'data-controller': 'turbo',
+                                             class: 'btn btn-primary btn-sm'
+
+-if @accounts.present?
+  .bg-white.main-box-shadow.default-border-radius.p-3.wallet-lg
+    %table.table
+      %thead
+        %tr
+          %th{ scope: 'col' }Account
+          %th{ scope: 'col' }Description
+          %th.text-right{ scope: 'col' }Initial Amount
+          %th.text-right{ scope: 'col' }Balance
+          %th.text-right{ scope: 'col' }Action
+      %tbody
+        - @accounts.each do |account|
+          = render 'account_row', account: account
+      - if @accounts.count > 1
+        %tfoot
+          %tr
+            %td{colspan:'2'}
+            %th.text-right Total
+            %th.text-right= number_to_currency(@accounts_total_balance)
+            %td
+  %div.wallet-md
+    - @accounts.each do |account|
+      = render 'account_card', account: account
+- else
+  %p (There are no accounts yet.)
