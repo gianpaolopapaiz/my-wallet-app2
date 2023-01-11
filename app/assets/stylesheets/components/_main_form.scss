@@ -15,6 +15,10 @@
 
     .form-control {
       margin-bottom: 18px;
+      background-color: white;
+    }
+    .form-check-input {
+      background-color: white;
     }
 
     .form-buttons {
@@ -37,6 +41,13 @@
 .main-modal-form {
   .form-control {
     margin: 5px 0 15px 0;
+    background-color: white;
+    &:active {
+      background-color: white;
+    }
+  }
+  .form-check-input {
+    background-color: white;
   }
   .form-buttons {
     margin-top: 25px;
