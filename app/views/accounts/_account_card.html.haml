@@ -13,11 +13,11 @@
   %div.card-value
     %div{style: 'min-width:60px'}
       = link_to '', edit_account_path(account), 'data-controller': 'turbo',
-                                                class: 'bi bi-pencil-fill mx-2',
+                                                class: 'fa-solid fa-pencil mx-2',
                                                 title: 'Edit account'
       = link_to '', account_path(account), data: { turbo_method: :delete,
                                                    turbo_confirm: 'Are you sure that you want to delete this account?' },
-                                                   class: 'bi bi-trash-fill',
+                                                   class: 'fa-solid fa-trash',
                                                    title: 'Delete account'
     %div
       =link_to '', account_path(account), title: 'Account transactions',

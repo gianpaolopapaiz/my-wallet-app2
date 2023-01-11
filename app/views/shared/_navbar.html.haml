@@ -1,25 +1,25 @@
 .wallet-navbar
   .navbar-logo
     = link_to accounts_path, class: "navbar-brand", title: "My Wallets App" do
-      %i.bi.bi-wallet-fill{style:'color: green'}
+      %i.fa-solid.fa-wallet{style:'color: green'}
   .navbar-options
     - if user_signed_in?
-      = link_to "", accounts_path, class: "bi bi-house-door-fill",
+      = link_to "", accounts_path, class: "fa-solid fa-house",
                                    title: "Home",
                                    style: 'color:green'
-      = link_to "", statistics_path, class: "bi bi-pie-chart-fill",
+      = link_to "", statistics_path, class: "fa-solid fa-chart-pie",
                                      title: "Statistics",
                                      style: 'color:green; font-size:23px;'
-      = link_to "", categories_path, class: "bi bi-folder-fill",
+      = link_to "", categories_path, class: "fa-solid fa-folder",
                                      title: "Categories",
                                      style: 'color:green'
       %li.dropdown
-        %i.bi.bi-person-circle{id: "navbarDropdown",
-                               title: 'User',
-                               style: 'font-size:30px;color:green',
-                               data: { bs_toggle: "dropdown" },
-                               'aria-haspopup': true,
-                               'aria-expanded': false }
+        %i.fa-solid.fa-user{id: "navbarDropdown",
+                            title: 'User',
+                            style: 'color:green',
+                            data: { bs_toggle: "dropdown" },
+                            'aria-haspopup': true,
+                            'aria-expanded': false }
         .dropdown-menu.dropdown-menu-end.default-border-radius{"aria-labelledby" => "navbarDropdown"}
           = link_to "Edit User", edit_user_registration_path, class: "dropdown-item"
           = link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item"
