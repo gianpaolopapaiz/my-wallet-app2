@@ -10,7 +10,8 @@
     = javascript_importmap_tags
   %body
     = render 'shared/navbar'
-    = render 'shared/flashes'
-    .default-page-wrapper
-      = yield
-      = turbo_frame_tag 'remote_modal'
+    %div.mt-5
+      = render 'shared/flashes'
+      .default-page-wrapper
+        = yield
+        = turbo_frame_tag 'remote_modal'
