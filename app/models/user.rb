@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Associations
   has_many :categories
+  has_many :subcategories
   has_many :accounts
   has_many :transactions, through: :accounts
   # has_many :subcategories, through: :categories
