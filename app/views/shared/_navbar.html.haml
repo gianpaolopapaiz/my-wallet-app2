@@ -19,7 +19,7 @@
                             'aria-haspopup': true,
                             'aria-expanded': false }
         .dropdown-menu.dropdown-menu-end.default-border-radius{"aria-labelledby" => "navbarDropdown"}
-          = link_to "Edit User", edit_user_registration_path, class: "dropdown-item"
+          = link_to "Edit User", edit_user_registration_path, class: "dropdown-item", 'data-controller': 'turbo'
           = link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item"
     - else
       %li.login-link

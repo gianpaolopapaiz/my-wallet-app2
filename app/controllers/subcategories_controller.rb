@@ -17,6 +17,7 @@ class SubcategoriesController < ApplicationController
 
   def create
     @subcategory = @category.subcategories.new(subcategories_params)
+    @subcategory.user_id = current_user.id
     if @subcategory.save
       redirect_to categories_path(@category)
     else
