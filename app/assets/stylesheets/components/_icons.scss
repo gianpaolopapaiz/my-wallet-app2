@@ -17,3 +17,11 @@
     color: darkred;
   }
 }
+
+.fa-list-ul {
+  color: blue;
+
+  &:hover {
+    color: darkblue;
+  }
+}

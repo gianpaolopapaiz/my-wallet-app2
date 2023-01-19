@@ -3,10 +3,10 @@
   %td= subcategory.description
   %td
     .action-column
-      = link_to '', edit_subcategory_path(subcategory), 'data-controller': 'turbo',
-                                                        class: 'fa-solid fa-pencil',
-                                                        title: 'Edit Category'
-      = link_to '', subcategory_path(subcategory), data: { turbo_method: :delete,
-                                                           turbo_confirm: 'Are you sure that you want to delete this subcategory?' },
-                                                   class: 'fa-solid fa-trash',
-                                                   title: 'Delete Category'
+      = link_to edit_subcategory_path(subcategory), 'data-controller': 'turbo',
+                                                     title: 'Edit Category' do
+        %i.fa-solid.fa-pencil
+      = link_to subcategory_path(subcategory), data: { turbo_method: :delete,
+                                                       turbo_confirm: 'Are you sure that you want to delete this subcategory?' },
+                                               title: 'Delete Category' do
+        %i.fa-solid.fa-trash

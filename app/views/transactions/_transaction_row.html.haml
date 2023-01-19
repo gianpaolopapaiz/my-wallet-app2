@@ -11,10 +11,10 @@
     = number_to_currency(transaction.account_balance)
   %td
     .action-column
-      = link_to '', edit_transaction_path(transaction), 'data-controller': 'turbo',
-                                                        class: 'fa-solid fa-pencil',
-                                                        title: 'Edit transaction'
-      = link_to '', transaction_path(transaction), data: { turbo_method: :delete,
+      = link_to edit_transaction_path(transaction), 'data-controller': 'turbo',
+                                                    title: 'Edit transaction' do
+        %i.fa-solid.fa-pencil
+      = link_to transaction_path(transaction), data: { turbo_method: :delete,
                                                            turbo_confirm: 'Are you sure that you want to delete this transaction?' },
-                                                   class: 'fa-solid fa-trash',
-                                                   title: 'Delete transaction'
+                                                   title: 'Delete transaction' do
+        %i.fa-solid.fa-trash

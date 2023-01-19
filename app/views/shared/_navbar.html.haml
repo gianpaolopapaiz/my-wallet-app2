@@ -1,18 +1,16 @@
 .wallet-navbar
   .navbar-logo
-    = link_to accounts_path, class: "navbar-brand", title: "My Wallets App" do
-      %i.fa-solid.fa-wallet{style:'color: green'}
+    = link_to accounts_path, class: "navbar-brand",
+                             title: "My Wallets App" do
+      %i.fa-solid.fa-wallet.green
   .navbar-options
     - if user_signed_in?
-      = link_to "", accounts_path, class: "fa-solid fa-house",
-                                   title: "Home",
-                                   style: 'color:green'
-      = link_to "", statistics_path, class: "fa-solid fa-chart-pie",
-                                     title: "Statistics",
-                                     style: 'color:green; font-size:23px;'
-      = link_to "", categories_path, class: "fa-solid fa-folder",
-                                     title: "Categories",
-                                     style: 'color:green'
+      = link_to accounts_path title: "Home" do
+        %i.fa-solid.fa-house.green
+      = link_to statistics_path, title: "Statistics" do
+        %i.fa-solid.fa-chart-pie.green
+      = link_to categories_path, title: "Categories" do
+        %i.fa-solid.fa-folder.green
       %li.dropdown
         %i.fa-solid.fa-user{id: "navbarDropdown",
                             title: 'User',
