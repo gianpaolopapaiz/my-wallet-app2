@@ -3,7 +3,7 @@ class Account < ApplicationRecord
   belongs_to :user
   has_many :transactions, dependent: :destroy
   # Validations
-  validates :name, length: { maximum: 20 }, presence: true
+  validates :name, length: { maximum: 20 }, presence: true, uniqueness: { scope: :user_id }
   validates :description, length: { maximum: 50 }
   validates :initial_amount, numericality: true
 
