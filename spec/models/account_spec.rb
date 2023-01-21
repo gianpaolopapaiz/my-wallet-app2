@@ -51,7 +51,7 @@ RSpec.describe Account, type: :model do
     end
   end
 
-  it 'does not create and account with description with more than 50 characters' do
+  it 'does not create an account with description with more than 50 characters' do
     description = ''
     51.times do
       description += 'a'
@@ -62,5 +62,14 @@ RSpec.describe Account, type: :model do
                              initial_amount: 15.5)
 
     expect(account.errors.messages[:description][0]).to eq("is too long (maximum is 50 characters)")
+  end
+
+  it 'does not create an account with initial_amount other than a number' do
+    account = Account.create(user: @user,
+                             name: 'Account 1',
+                             description: 'Account 1 description',
+                             initial_amount: 'string')
+
+    expect(account.errors.messages[:initial_amount][0]).to eq("is not a number")
   end
 end
