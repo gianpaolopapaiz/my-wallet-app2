@@ -13,7 +13,6 @@ FactoryBot.define do
     name { 'Category 1' }
     description { 'Category 1 description' }
     user { nil }
-    subcategory { nil }
   end
 
   factory :subcategory do
