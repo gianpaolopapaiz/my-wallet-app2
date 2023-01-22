@@ -11,11 +11,14 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_01_19_222627) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.float "initial_amount", default: 0.0
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_accounts_on_user_id"
@@ -24,10 +27,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_19_222627) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "subcategory_id"
+    t.bigint "subcategory_id"
     t.index ["subcategory_id"], name: "index_categories_on_subcategory_id"
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
@@ -35,10 +38,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_19_222627) do
   create_table "subcategories", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "category_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["category_id"], name: "index_subcategories_on_category_id"
     t.index ["user_id"], name: "index_subcategories_on_user_id"
   end
@@ -47,9 +50,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_19_222627) do
     t.string "name"
     t.text "description"
     t.float "value"
-    t.integer "category_id"
-    t.integer "account_id", null: false
-    t.integer "subcategory_id"
+    t.bigint "category_id"
+    t.bigint "account_id", null: false
+    t.bigint "subcategory_id"
     t.string "check_number"
     t.date "date"
     t.datetime "created_at", null: false
