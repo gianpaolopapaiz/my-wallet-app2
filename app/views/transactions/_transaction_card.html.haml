@@ -4,12 +4,10 @@
     %div.description
       = transaction.description
     %div
-      = transaction.category&.name || 'None'
+      = transaction.category&.name || ''
       = transaction.subcategory ? ': ' + transaction.subcategory.name : ''
   %div.card-value
-    %div.value{class: "#{number_class(transaction.value)}"}
-      = number_to_currency(transaction.value)
-    %div{style: 'min-width:60px'}
+    %div
       = link_to edit_transaction_path(transaction), 'data-controller': 'turbo',
                                                      class: 'mx-2 text-decoration-none',
                                                      title: 'Edit transaction' do
@@ -18,3 +16,5 @@
                                                        turbo_confirm: 'Are you sure that you want to delete this transaction?' },
                                                title: 'Delete transaction' do
         %i.fa-solid.fa-trash
+    %div.value{class: "#{number_class(transaction.value)}", style: 'min-width:60px'}
+      = number_to_currency(transaction.value)

@@ -1,15 +1,11 @@
 %div.bg-white.main-box-shadow.default-border-radius.p-3.my-3.wallet-card.default-border-radius.p-3
   %div.card-info
-    %h6= account.name
+    %h6= link_to account.name, account_path(account), class: 'text-decoration-none'
     %div
       = account.description
     %div
       Initial Amount:
       = number_to_currency(account.initial_amount)
-    %div
-      Balance:
-      %span{class: "#{number_class(account.balance)}"}
-        = number_to_currency(account.balance)
   %div.card-value
     %div{style: 'min-width:60px'}
       = link_to edit_account_path(account), 'data-controller': 'turbo',
@@ -22,6 +18,5 @@
         %i.fa-solid.fa-trash
 
     %div
-      =link_to account_path(account), title: 'Account transactions',
-                                      class: 'mx-2' do
-        %i.fa-solid.fa-list-ul
+      .value{class: "#{number_class(account.balance)}"}
+        = number_to_currency(account.balance)
