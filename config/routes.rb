@@ -16,4 +16,14 @@ Rails.application.routes.draw do
   resources :statistics, only: [:index]
   resources :transactions, only: %i[show edit update destroy]
   resources :subcategories, only: %i[edit update destroy]
+
+  # API
+  namespace :api do
+    namespace :v1 do
+      resources :accounts do
+        resources :transactions
+      end
+      resources :categories
+    end
+  end
 end
