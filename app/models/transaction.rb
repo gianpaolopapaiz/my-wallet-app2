@@ -21,7 +21,11 @@ class Transaction < ApplicationRecord
 
   def account_balance
     balance = account.initial_amount
-    account.transactions.order(:date).where('date <= :date', date:).each do |transaction|
+    account.
+      transactions.
+      where('date <= :date', date:).
+      order(date: :asc, id: :asc).
+      each do |transaction|
       balance += transaction.value
       break if transaction == self
     end
