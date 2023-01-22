@@ -7,7 +7,7 @@ class AccountsController < ApplicationController
   end
 
   def show
-    @transactions = @account.transactions.order(date: :desc)
+    @transactions = @account.transactions.order(date: :desc, id: :desc)
     set_transaction_filter(params)
     @transactions_count = @transactions.count
   end
