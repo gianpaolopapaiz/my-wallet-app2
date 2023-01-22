@@ -22,8 +22,9 @@
     %div
       = form_tag statistics_path, method: :get do
         = label_tag 'Payment Type:', nil
-        = select_tag 'payment_type', options_for_select(%w[All Income Expense], @payment_type),
-                                     class: 'form-select form-select-sm'
+        = select_tag 'payment_type', options_for_select(%w[Expense Income], @payment_type),
+                                     class: 'form-select form-select-sm',
+                                     onclick: 'this.form.submit()'
   .category_statistics_wrapper
     %div
       = pie_chart @transactions_by_category, legend: "left",

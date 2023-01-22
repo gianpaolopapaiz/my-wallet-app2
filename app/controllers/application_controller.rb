@@ -25,12 +25,11 @@ class ApplicationController < ActionController::Base
     end
     @transactions = @transactions.filter_by_date(@start_date, @end_date)
     # Payment Type
-    @payment_type = 'All'
     if params[:payment_type] == 'Income'
       @transactions = @transactions.filter_by_income
       @payment_type = 'Income'
     end
-    if params[:payment_type] == 'Expense'
+    if [nil, 'expense'].include?(params[:payment_type])
       @transactions = @transactions.filter_by_expense
       @payment_type = 'Expense'
     end
