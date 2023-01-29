@@ -104,7 +104,7 @@ RSpec.describe Api::V1::AccountsController, type: :request do
       expect(Account.all.size).to eq(accounts_count)
     end
 
-    it "Updates - creates an account related to the user" do
+    it "UPDATE - updates an account related to the user" do
       accounts_count = Account.all.size
       params = {
         account:
