@@ -1,6 +1,7 @@
 class StatisticsController < ApplicationController
   def index
     @transactions = policy_scope(Transaction)
+    params[:payment_type] ||= session[:payment_type] || "Expense"
     set_transaction_filter(params)
     @transactions_total = @transactions.sum(:value)
     @transactions_by_category = @transactions.joins(:category)

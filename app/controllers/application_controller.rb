@@ -16,12 +16,16 @@ class ApplicationController < ActionController::Base
   def set_transaction_filter(params)
     # Filters
     # Date
+    _start_date = params[:start_date] || session[:start_date]
+    _end_date = params[:end_date] || session[:end_date]
     @start_date = Date.today.at_beginning_of_year
     @end_date = Date.today.at_end_of_month
     @end_of_year = Date.today.at_end_of_year
-    if !params[:start_date].blank? && !params[:end_date].blank?
-      @start_date = params[:start_date]
-      @end_date = params[:end_date]
+    if !_start_date.blank? && !_end_date.blank?
+      session[:start_date] = _start_date
+      @start_date = _start_date
+      session[:end_date] = _end_date
+      @end_date = _end_date
     end
     @transactions = @transactions.filter_by_date(@start_date, @end_date)
     # Payment Type
@@ -29,7 +33,7 @@ class ApplicationController < ActionController::Base
       @transactions = @transactions.filter_by_income
       @payment_type = 'Income'
     end
-    if [nil, 'expense'].include?(params[:payment_type])
+    if params[:payment_type] == 'Expense'
       @transactions = @transactions.filter_by_expense
       @payment_type = 'Expense'
     end
