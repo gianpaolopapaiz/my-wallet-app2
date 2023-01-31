@@ -14,6 +14,13 @@ select, input, .btn, .accordion-header {
   border-radius: 10px !important;
 }
 
+input, textarea, select {
+  &:focus {
+    background-color: white !important;
+  }
+}
+
+
 .default-page-wrapper {
   padding: 15px;
 }
@@ -83,8 +90,12 @@ select, input, .btn, .accordion-header {
   color: red;
 }
 
+.form-select {
+  background-color: white !important;
+}
+
 .form-date {
-  background-color: #F4F4F4;
+  background-color: white;
   border: 1px solid #ced4da;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   &:focus {
