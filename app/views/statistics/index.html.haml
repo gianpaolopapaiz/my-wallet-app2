@@ -17,57 +17,70 @@
                                         filter_payment_type: false,
                                         filter_category: false
   %hr
-  .add-button
-    %h4 Transactions by category
-    %div
-      = form_tag statistics_path, method: :get do
-        = label_tag 'Payment Type:', nil
-        = select_tag 'payment_type', options_for_select(%w[Expense Income], @payment_type),
-                                     class: 'form-select form-select-sm',
-                                     onclick: 'this.form.submit()'
-  .category_statistics_wrapper
-    %div
-      = pie_chart @transactions_by_category, legend: "left",
-                                             donut: true,
-                                             prefix: "$",
+  - if @transactions.empty?
+    .text-center (There is no data for current filter)
+  - elsif @transactions_by_category.empty? && @transactions_by_week.empty? && @transactions_by_month.empty?
+    (There is no data for current filter)
+  - else
+    .add-button
+      %h4 Transactions by category
+      %div
+        = form_tag statistics_path, method: :get do
+          = label_tag 'Payment Type:', nil
+          = select_tag 'payment_type', options_for_select(%w[Expense Income], @payment_type),
+                                       class: 'form-select form-select-sm',
+                                       onclick: 'this.form.submit()'
+    .category_statistics_wrapper
+      - if @transactions_by_category.empty?
+        (There is no data for current filter)
+      - else
+        %div
+          = pie_chart @transactions_by_category, legend: "left",
+                                                 donut: true,
+                                                 prefix: "$",
+                                                 thousands: ",",
+                                                 decimal: ".",
+                                                 round: 2,
+                                                 loading: "Loading...",
+                                                 colors: %w( #326e6e #77afb6 #c6d9e8 #c1c7df #7c99bb ),
+                                                 dataset: {borderWidth: 5}
+        %div
+          %table.table.table-hover
+            %thead
+              %tr
+                %th{ scope: 'col' }Category
+                %th{ scope: 'col' }Amount
+                %th{ scope: 'col' }% of Total
+            %tbody
+              - @transactions_by_category.each do |data|
+                %tr
+                  %td=data.first
+                  %td=number_to_currency(data.last)
+                  %td=number_to_percentage((data.last / @transactions_total) * 100,  precision: 2)
+    %hr
+    %h4 Transactions by day
+    %br
+    - if @transactions_by_week.empty?
+      .text-center (There is no data for current filter)
+    - else
+      = line_chart @transactions_by_week, xmin: @start_date,
+                                          xmax: @end_date,
+                                          prefix: "$",
+                                          thousands: ",",
+                                          decimal: ".",
+                                          round: 2,
+                                          loading: "Loading...",
+                                          colors: %w( #326e6e #77afb6 #c6d9e8 #c1c7df #7c99bb )
+    %hr
+    %h4 Transactions by month
+    - if @transactions_by_month.empty?
+      .text-center (There is no data for current filter)
+    - else
+      = column_chart @transactions_by_month, prefix: "$",
                                              thousands: ",",
                                              decimal: ".",
                                              round: 2,
                                              loading: "Loading...",
-                                             colors: %w( #326e6e #77afb6 #c6d9e8 #c1c7df #7c99bb ),
-                                             dataset: {borderWidth: 5}
-    %div
-      %table.table.table-hover
-        %thead
-          %tr
-            %th{ scope: 'col' }Category
-            %th{ scope: 'col' }Amount
-            %th{ scope: 'col' }% of Total
-        %tbody
-          - @transactions_by_category.each do |data|
-            %tr
-              %td=data.first
-              %td=number_to_currency(data.last)
-              %td=number_to_percentage((data.last / @transactions_total) * 100,  precision: 2)
-  %hr
-  %h4 Transactions by day
-  %br
-  = line_chart @transactions_by_week, xmin: @start_date,
-                                     xmax: @end_date,
-                                     prefix: "$",
-                                     thousands: ",",
-                                     decimal: ".",
-                                     round: 2,
-                                     loading: "Loading...",
-                                     colors: %w( #326e6e #77afb6 #c6d9e8 #c1c7df #7c99bb )
-  %hr
-  %h4 Transactions by month
-  = column_chart @transactions_by_month,
-                                     prefix: "$",
-                                     thousands: ",",
-                                     decimal: ".",
-                                     round: 2,
-                                     loading: "Loading...",
-                                     colors: %w( #326e6e #77afb6 #c6d9e8 #c1c7df #7c99bb )
+                                             colors: %w( #326e6e #77afb6 #c6d9e8 #c1c7df #7c99bb )
 
 
