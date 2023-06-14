@@ -3,7 +3,6 @@ class AccountsController < ApplicationController
 
   def index
     @accounts = policy_scope(Account).order(:name)
-
     @accounts_total_balance = @accounts.collection_balance
   end
 
